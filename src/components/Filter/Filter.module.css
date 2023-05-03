@@ -1,0 +1,11 @@
+.filterBox {
+    margin-bottom: 15px;
+  }
+  
+  .filterInput {
+    padding: 8px;
+    padding-left: 10px;
+    background: #e5e5e5;
+    border-radius: 35px;
+    border: none;
+  }
