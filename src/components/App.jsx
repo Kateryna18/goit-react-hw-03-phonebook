@@ -5,11 +5,28 @@ import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 import toast, { Toaster } from 'react-hot-toast';
 
+// const CONTACTS_KEY = [];
+
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem("CONTACTS_KEY");
+    const parseSavedContacts = JSON.parse(savedContacts);
+
+    if(savedContacts) {
+      this.setState({contacts: parseSavedContacts})
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if(this.state.contacts !== prevState.contacts) {
+      localStorage.setItem("CONTACTS_KEY", JSON.stringify(this.state.contacts))
+    }
+  }
 
   handleAddContact = contact => {
     if (this.state.contacts.some(item => item.name === contact.name)) {
